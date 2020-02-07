@@ -198,12 +198,14 @@ function create_table(drv, con, table_num)
    print(string.format("Creating table 'sbtest%d'...", table_num))
 
    if drv:name() == "tarantool" then
+      -- FIXME: Tarantool/SQL does not support CHAR type, replaced
+      -- it with VARCHAR.
       query = string.format([[
 CREATE TABLE sbtest%d(
   id %s,
   k INTEGER DEFAULT '0' NOT NULL,
-  c CHAR(120) DEFAULT '' NOT NULL,
-  pad CHAR(60) DEFAULT '' NOT NULL
+  c VARCHAR(120) DEFAULT '' NOT NULL,
+  pad VARCHAR(60) DEFAULT '' NOT NULL
 )]],
          table_num, id_def)
    else
