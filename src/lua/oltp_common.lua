@@ -80,6 +80,7 @@ sysbench.cmdline.options = {
 -- benefit from executing with --threads > 1 as long as --tables > 1
 function cmd_prepare()
    local drv = sysbench.sql.driver()
+   print("Database driver is " .. drv)
    local con = drv:connect()
 
    for i = sysbench.tid % sysbench.opt.threads + 1, sysbench.opt.tables,
